@@ -14,6 +14,10 @@
 		4686DC952A36078C0033E23E /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DC942A36078C0033E23E /* FavoritesPresenter.swift */; };
 		4686DC972A36079C0033E23E /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DC962A36079C0033E23E /* FavoritesRouter.swift */; };
 		4686DC992A3607B40033E23E /* FavoritesModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DC982A3607B40033E23E /* FavoritesModuleBuilder.swift */; };
+		4686DC9B2A3864140033E23E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DC9A2A3864140033E23E /* TabBarController.swift */; };
+		4686DCA92A38C86B0033E23E /* FilmsCD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4686DCA72A38C86B0033E23E /* FilmsCD.xcdatamodeld */; };
+		4686DCB02A38CA3A0033E23E /* FilmModelCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DCAE2A38CA3A0033E23E /* FilmModelCoreData+CoreDataClass.swift */; };
+		4686DCB12A38CA3A0033E23E /* FilmModelCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DCAF2A38CA3A0033E23E /* FilmModelCoreData+CoreDataProperties.swift */; };
 		46C5A12F2A2B252E0091B0EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C5A12E2A2B252E0091B0EA /* AppDelegate.swift */; };
 		46C5A1312A2B252E0091B0EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C5A1302A2B252E0091B0EA /* SceneDelegate.swift */; };
 		46C5A1332A2B252E0091B0EA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C5A1322A2B252E0091B0EA /* SearchViewController.swift */; };
@@ -43,6 +47,10 @@
 		4686DC942A36078C0033E23E /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
 		4686DC962A36079C0033E23E /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		4686DC982A3607B40033E23E /* FavoritesModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesModuleBuilder.swift; sourceTree = "<group>"; };
+		4686DC9A2A3864140033E23E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		4686DCA82A38C86B0033E23E /* FilmsCD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FilmsCD.xcdatamodel; sourceTree = "<group>"; };
+		4686DCAE2A38CA3A0033E23E /* FilmModelCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilmModelCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4686DCAF2A38CA3A0033E23E /* FilmModelCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilmModelCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		46C5A12B2A2B252E0091B0EA /* WatchLater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchLater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C5A12E2A2B252E0091B0EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46C5A1302A2B252E0091B0EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +88,7 @@
 		4686DC8A2A35D3A60033E23E /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				4686DC9A2A3864140033E23E /* TabBarController.swift */,
 			);
 			path = TabBarController;
 			sourceTree = "<group>";
@@ -121,9 +130,9 @@
 				4686DC8A2A35D3A60033E23E /* TabBarController */,
 				46C5A1622A3316D10091B0EA /* Application */,
 				46C5A1832A34A1B10091B0EA /* UIConfigs */,
+				46C5A16F2A3325C30091B0EA /* DataSource */,
 				46C5A1782A3361FF0091B0EA /* Network */,
 				46C5A1722A3326A40091B0EA /* Entities */,
-				46C5A16F2A3325C30091B0EA /* DataSource */,
 				46C5A1612A33165F0091B0EA /* SearchModule */,
 				46C5A1602A3316430091B0EA /* Resources */,
 			);
@@ -167,6 +176,9 @@
 			isa = PBXGroup;
 			children = (
 				46C5A1792A3362370091B0EA /* DataSourceManager.swift */,
+				4686DCAE2A38CA3A0033E23E /* FilmModelCoreData+CoreDataClass.swift */,
+				4686DCAF2A38CA3A0033E23E /* FilmModelCoreData+CoreDataProperties.swift */,
+				4686DCA72A38C86B0033E23E /* FilmsCD.xcdatamodeld */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -279,6 +291,7 @@
 				4686DC972A36079C0033E23E /* FavoritesRouter.swift in Sources */,
 				46C5A16E2A331A9A0091B0EA /* FilmCellView.swift in Sources */,
 				4686DC8D2A3607560033E23E /* FavoritesFilmCellView.swift in Sources */,
+				4686DCA92A38C86B0033E23E /* FilmsCD.xcdatamodeld in Sources */,
 				46C5A1682A3317870091B0EA /* SearchRouter.swift in Sources */,
 				4686DC952A36078C0033E23E /* FavoritesPresenter.swift in Sources */,
 				46C5A1712A3325FF0091B0EA /* APIManager.swift in Sources */,
@@ -286,10 +299,13 @@
 				46C5A1332A2B252E0091B0EA /* SearchViewController.swift in Sources */,
 				46C5A12F2A2B252E0091B0EA /* AppDelegate.swift in Sources */,
 				46C5A1662A33176A0091B0EA /* SearchPresenter.swift in Sources */,
+				4686DCB12A38CA3A0033E23E /* FilmModelCoreData+CoreDataProperties.swift in Sources */,
 				4686DC912A3607720033E23E /* FavoritesViewController.swift in Sources */,
 				46C5A1742A3326B40091B0EA /* FilmModel.swift in Sources */,
 				46C5A17A2A3362370091B0EA /* DataSourceManager.swift in Sources */,
+				4686DC9B2A3864140033E23E /* TabBarController.swift in Sources */,
 				46C5A1642A33174D0091B0EA /* SearchInteractor.swift in Sources */,
+				4686DCB02A38CA3A0033E23E /* FilmModelCoreData+CoreDataClass.swift in Sources */,
 				4686DC932A36077F0033E23E /* FavoritesInteractor.swift in Sources */,
 				46C5A1312A2B252E0091B0EA /* SceneDelegate.swift in Sources */,
 				4686DC992A3607B40033E23E /* FavoritesModuleBuilder.swift in Sources */,
@@ -549,6 +565,19 @@
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		4686DCA72A38C86B0033E23E /* FilmsCD.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4686DCA82A38C86B0033E23E /* FilmsCD.xcdatamodel */,
+			);
+			currentVersion = 4686DCA82A38C86B0033E23E /* FilmsCD.xcdatamodel */;
+			path = FilmsCD.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 46C5A1232A2B252E0091B0EA /* Project object */;
 }

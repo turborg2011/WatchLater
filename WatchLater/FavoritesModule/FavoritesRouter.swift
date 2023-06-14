@@ -1,8 +1,12 @@
-//
-//  FavoritesRouter.swift
-//  WatchLater
-//
-//  Created by Хайдар Даукаев on 11.06.2023.
-//
 
-import Foundation
+import UIKit
+
+protocol IFavoritesRouter: AnyObject {
+    func openModalDetailView()
+}
+
+final class FavoritesRouter: IFavoritesRouter {
+    func openModalDetailView() {
+        // open detail view of film
+    }
+}

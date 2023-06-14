@@ -1,8 +1,30 @@
-//
-//  FavoritesViewController.swift
-//  WatchLater
-//
-//  Created by Хайдар Даукаев on 11.06.2023.
-//
 
-import Foundation
+import UIKit
+
+protocol IFavoritesViewController: AnyObject {
+    
+}
+
+final class FavoritesViewController: UIViewController {
+    
+    private let favoritesView = FavoritesView()
+    private let favoritesPresenter: IFavoritesPresenter
+    
+    init(presenter: IFavoritesPresenter) {
+        self.favoritesPresenter = presenter
+        super.init(nibName:nil, bundle:nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        self.view = self.favoritesView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.favoritesPresenter.viewDidLoad(favoritesView)
+    }
+}

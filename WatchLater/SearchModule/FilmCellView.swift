@@ -6,7 +6,7 @@ protocol IFilmCellView: AnyObject {
     func setDataToFilmCellView(_ filmCellModel: IFilmCellModel)
 }
 
-class FilmCellView: UITableViewCell, IFilmCellView {
+class FilmCellView: UITableViewCell {
     
     let filmPoster = UIImageView()
     let filmName = UILabel()
@@ -20,10 +20,11 @@ class FilmCellView: UITableViewCell, IFilmCellView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+extension FilmCellView: IFilmCellView {
     func setDataToFilmCellView(_ filmCellModel: IFilmCellModel) {
         filmPoster.image = filmCellModel.cellFilmPoster
-        print("IMAGE IS +++ \(filmCellModel.cellFilmPoster)")
         filmName.text = filmCellModel.cellFilmName
     }
 }

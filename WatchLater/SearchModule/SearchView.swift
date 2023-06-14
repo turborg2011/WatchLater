@@ -55,7 +55,6 @@ final class SearchView: UIView {
 extension SearchView: ISearchView {
     func reloadData() {
         self.tableView.reloadData()
-        print(" ----- RELOAD DATA ----- \(films.count)")
     }
     
     func reloadFilmPosterByID(filmID: Int, image: UIImage) {
@@ -82,8 +81,6 @@ extension SearchView: UITableViewDataSource {
 
         let filmCellModel = films[indexPath.row]
         cell.setDataToFilmCellView(filmCellModel)
-        
-        print("RELOAD DATA")
         
         return cell
     }

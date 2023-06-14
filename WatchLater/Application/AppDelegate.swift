@@ -1,5 +1,6 @@
 
 import UIKit
+import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,5 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+    }
+    
+    lazy var persistantContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "FilmsCD")
+        container.loadPersistentStores { description, error in
+            if let error {
+                print(error.localizedDescription)
+            }
+        }
+        
+        return container
+    }()
+    
+    func saveContext() {
+        let context = persistantContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+        }
     }
 }

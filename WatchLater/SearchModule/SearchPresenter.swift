@@ -33,10 +33,7 @@ extension SearchPresenter: ISearchPresenter {
             self?.showSearchResults(filmName: filmName)
         }
         
-        
-        // взять модель из интерактора - возможно из локальной памяти
-        
-        // задать обработчик нажатия на ячейку (вызввать его в table delegate)
+        // задать обработчик нажатия на ячейку (вызывать его в table delegate)
         
     }
     

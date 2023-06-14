@@ -1,8 +1,20 @@
-//
-//  FavoritesInteractor.swift
-//  WatchLater
-//
-//  Created by Хайдар Даукаев on 11.06.2023.
-//
 
-import Foundation
+import UIKit
+
+protocol IFavoritesInteractor: AnyObject {
+    func getAllFilms()
+}
+
+final class FavoritesInteractor {
+    
+    weak var presenter: IFavoritesPresenter?
+    // var data manager
+    
+}
+
+extension FavoritesInteractor: IFavoritesInteractor {
+    func getAllFilms() {
+        //
+    }
+}
+

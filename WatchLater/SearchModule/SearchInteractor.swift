@@ -2,6 +2,7 @@ import UIKit
 import Foundation
 
 protocol ISearchInteractor: AnyObject {
+    // рандомный фильм переделать
     func getRandomFilm() -> FilmModel?
     func getFilmSearchResultsByName(_ filmName: String)
 }
@@ -22,7 +23,6 @@ extension SearchInteractor: ISearchInteractor {
         
         apiManager.getSearchResultsByFilmName(filmName: filmName) { films in
             searchResults = films
-            print("FILMS COUNT IN COMPL = \(films.count)")
             
             let tableData = {
                 var films: [FilmCellModel] = []

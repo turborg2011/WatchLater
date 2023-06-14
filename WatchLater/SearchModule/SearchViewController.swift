@@ -1,6 +1,5 @@
 
 import UIKit
-import SnapKit
 
 final class SearchViewController: UIViewController {
     
