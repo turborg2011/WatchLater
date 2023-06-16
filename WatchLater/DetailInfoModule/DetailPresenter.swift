@@ -32,7 +32,6 @@ final class DetailPresenter: IDetailPresenter {
             self.detailInteractor.getFilmByID(id)
         } else if let film = filmModel {
             self.filmID = film.id
-            print("PRES: isD")
             self.view?.setData(film)
         } else {
             print("PRES: no film and filmID")
@@ -56,7 +55,7 @@ final class DetailPresenter: IDetailPresenter {
     }
     
     func didUpdateCommentary() {
-        print("PRES: okkkk")
+        print("PRES: commentary updated")
     }
     
     func didAddFilm(_ filmID: Int) {

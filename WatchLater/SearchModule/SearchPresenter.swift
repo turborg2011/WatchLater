@@ -40,18 +40,15 @@ extension SearchPresenter: ISearchPresenter {
         }
         
         self.view?.tapAddToFavsHandler = { filmID in
-            print("ID = \(filmID)")
             self.searchInteractor.saveFilm(filmID)
         }
         
         self.view?.tapCellHandler = { [weak self] filmID in
-            print("filmId in tap cell \(filmID)")
             self?.showDetailFilmInfo(filmID)
         }
         
         self.view?.tapDelFromFavsHandler = { [weak self] filmID in
             self?.searchInteractor.deleteFilm(filmID)
-            print("delete button tapped")
         }
         
     }
@@ -77,25 +74,23 @@ extension SearchPresenter: ISearchPresenter {
     
     func showDetailFilmInfo(_ filmID: Int) {
         searchInteractor.getFilmById(filmID)
-        print("search inter get film by id")
     }
     
     func didLoadFilmByID(film: FilmDetailInfoModel) {
         // show detail modal info
-        print("PRES: film successfully added")
         let vc = self.viewController as? UIViewController
         self.searchRouter.openModalDetailView(vc, film)
     }
     
     func didAddFilm(_ filmID: Int) {
-        print("PRES: film successfully added")
     }
     
     func didDeleteFilm(_ filmID: Int) {
-        print("PRES: film successfully deleted")
     }
     
     func didLoadFilmFromCoreData(_ filmData: FilmDetailInfoModel) {
         print("PRES: film loaded from core data")
+        let vc = self.viewController as? UIViewController
+        self.searchRouter.openModalDetailView(vc, filmData)
     }
 }

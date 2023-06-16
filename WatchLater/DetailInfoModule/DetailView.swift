@@ -84,7 +84,7 @@ private extension DetailView {
         self.addSubview(mainView)
         
         mainView.addSubview(filmNameLabel)
-        mainView.addSubview(deleteButton)
+        //mainView.addSubview(deleteButton)
         
         // film name label
         filmNameLabel.font = UIFont(name: "GeezaPro-bold", size: 18)
@@ -160,7 +160,7 @@ private extension DetailView {
         }
         
         descBackground.snp.makeConstraints { make in
-            make.height.equalTo(170)
+            make.height.equalTo(220)
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(posterAndDetailView.snp.bottom).offset(10)
         }
@@ -195,19 +195,19 @@ private extension DetailView {
         }
         
         commBackground.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(descBackground.snp.bottom)
         }
         
         
         // Delete button
-        deleteButton.layer.cornerRadius = 14
-        deleteButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(commBackground.snp.bottom).offset(10)
-        }
-        
+//        deleteButton.layer.cornerRadius = 14
+//        deleteButton.snp.makeConstraints { make in
+//            make.height.equalTo(50)
+//            make.leading.trailing.bottom.equalToSuperview()
+//            make.top.equalTo(commBackground.snp.bottom).offset(10)
+//        }
+//
 //        filmYear.backgroundColor = .systemGray
 //        filmType.backgroundColor = .systemGray
 //        filmRating.backgroundColor = .systemGray

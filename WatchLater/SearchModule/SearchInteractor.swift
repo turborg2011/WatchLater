@@ -42,13 +42,13 @@ extension SearchInteractor: ISearchInteractor {
         if let filmModelCoreData = DataSourceManager.shared.getFilmByID(filmID) {
             let filmInfoModel = converCoreDataToFilmModel(coreDataModel: filmModelCoreData)
             self.presenter?.didLoadFilmFromCoreData(filmInfoModel)
-        }
-        
-        apiManager.getFilmByID(filmID: filmID) { [weak self] filmModel in
-            if let film = filmModel {
-                self?.convertFilmModelToDetailModel(film)
-            } else {
-                print("film == nil")
+        } else {
+            apiManager.getFilmByID(filmID: filmID) { [weak self] filmModel in
+                if let film = filmModel {
+                    self?.convertFilmModelToDetailModel(film)
+                } else {
+                    print("film == nil")
+                }
             }
         }
     }
@@ -125,6 +125,26 @@ private extension SearchInteractor {
     func convertToFilmCellModel(_ searchModel: FilmSearchModel) -> FilmCellModel? {
         
         if let filmID = searchModel.id {
+            
+            let isDownloaded: Bool = {
+                var downloaded = false
+                let filmsDownloadedIDs = DataSourceManager.shared.getSavedFilmsIDs()
+                filmsDownloadedIDs.forEach { id in
+                    if id == filmID {
+                        downloaded = true
+                    }
+                }
+                
+                return downloaded
+            }()
+            
+            if isDownloaded {
+                if let filmModelCoreData = DataSourceManager.shared.getFilmByID(filmID) {
+                    let filmCellModel = converCoreDataToFilmCellModel(coreDataModel: filmModelCoreData)
+                    return filmCellModel
+                }
+            }
+            
             apiManager.getPosterImageByURL(urlString: searchModel.poster) { image in
                 self.presenter?.didLoadFilmPoster(filmID: searchModel.id, image: image)
             }
@@ -151,18 +171,6 @@ private extension SearchInteractor {
                 }
             }
             
-            let isDownloaded: Bool = {
-                var downloaded = false
-                let filmsDownloadedIDs = DataSourceManager.shared.getSavedFilmsIDs()
-                filmsDownloadedIDs.forEach { id in
-                    if id == searchModel.id {
-                        downloaded = true
-                    }
-                }
-                
-                return downloaded
-            }()
-            
             let filmCellModel = FilmCellModel(id: filmID,
                                               cellFilmPoster: imagePlaceHolder,
                                               cellFilmName: searchModel.names?[0],
@@ -177,7 +185,6 @@ private extension SearchInteractor {
         } else {
             return nil
         }
-        
 
     }
     
@@ -197,7 +204,8 @@ private extension SearchInteractor {
                                             genres: coreDataModel.genre,
                                             countries: coreDataModel.country,
                                             rating: coreDataModel.rating,
-                                            isDownloaded: true
+                                            isDownloaded: true,
+                                            commentary: coreDataModel.commentary
         )
         
         return filmModel
@@ -231,6 +239,18 @@ private extension SearchInteractor {
                 }
             }
             
+            let isDownloaded: Bool = {
+                var downloaded = false
+                let filmsDownloadedIDs = DataSourceManager.shared.getSavedFilmsIDs()
+                filmsDownloadedIDs.forEach { id in
+                    if id == filmID {
+                        downloaded = true
+                    }
+                }
+                
+                return downloaded
+            }()
+            
             let filmDetailModel = FilmDetailInfoModel(id: filmID,
                                                       name: name,
                                                       type: filmModel.type,
@@ -240,11 +260,34 @@ private extension SearchInteractor {
                                                       genres: genres,
                                                       countries: countries,
                                                       rating: filmModel.rating?.kp,
+                                                      isDownloaded: isDownloaded,
                                                       commentary: ""
             )
 
             self?.presenter?.didLoadFilmByID(film: filmDetailModel)
         }
+    }
+    
+    func converCoreDataToFilmCellModel(coreDataModel: FilmModelCoreData) -> FilmCellModel {
+        var posterImage: UIImage? = UIImage(systemName: "photo")
+        
+        if let posterData = coreDataModel.poster {
+            posterImage = UIImage(data: posterData)
+        }
+        
+        let rating = String(coreDataModel.rating)
+        let year = String(coreDataModel.year)
+        
+        let filmCellModel = FilmCellModel(id: coreDataModel.id,
+                                           cellFilmPoster: posterImage,
+                                           cellFilmName: coreDataModel.name,
+                                           filmDescription: coreDataModel.filmDescription,
+                                           filmRating: rating,
+                                           filmYear: year,
+                                           filmGenre: coreDataModel.genre,
+                                           isDownloaded: true)
+        
+        return filmCellModel
     }
 }
 

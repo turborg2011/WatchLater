@@ -110,6 +110,7 @@ extension SearchView: UITableViewDataSource {
         cell.setDataToFilmCellView(filmCellModel)
         cell.delegate = self
         cell.contentView.isUserInteractionEnabled = false
+        cell.selectionStyle = .none
         
         return cell
     }
@@ -120,8 +121,8 @@ extension SearchView: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         UIApplication.shared.endEditing()
-        tapSearchButtonHandler?(searchBar.text)
         searchBarText = searchBar.text ?? ""
+        tapSearchButtonHandler?(searchBarText)
     }
 }
 
