@@ -10,6 +10,7 @@ final class FavoritesModuleBuilder {
         let presenter = FavoritesPresenter(interactor: interactor, router: router)
         interactor.presenter = presenter
         let viewController = FavoritesViewController(presenter: presenter)
+        presenter.viewController = viewController
         
         return viewController
     }

@@ -1,6 +1,10 @@
 
 import UIKit
 
+protocol ISearchViewController: AnyObject {
+    
+}
+
 final class SearchViewController: UIViewController {
     
     private let searchView = SearchView()
@@ -26,3 +30,4 @@ final class SearchViewController: UIViewController {
     }
 }
 
+extension SearchViewController: ISearchViewController {}

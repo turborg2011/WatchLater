@@ -27,4 +27,12 @@ final class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         self.favoritesPresenter.viewDidLoad(favoritesView)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.favoritesPresenter.viewDidAppear()
+    }
 }
+
+extension FavoritesViewController: IFavoritesViewController {}

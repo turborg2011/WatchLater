@@ -18,6 +18,9 @@ private extension TabBarController {
         let searchViewController = SearchModuleBuilder.buildSearchModule()
         let favoritesViewController = FavoritesModuleBuilder.buildFavoritesModule()
         
+        searchViewController.title = "Search"
+        favoritesViewController.title = "Favorites"
+        
         let searchNavigation = UINavigationController(rootViewController: searchViewController)
         let favoritesNavigation = UINavigationController(rootViewController: favoritesViewController)
         
@@ -27,7 +30,6 @@ private extension TabBarController {
         favoritesNavigation.tabBarItem = UITabBarItem(title: "Favorites",
                                                           image: UIImage(systemName: "star"),
                                                           tag: 2)
-        
         setViewControllers([
             searchNavigation,
             favoritesNavigation

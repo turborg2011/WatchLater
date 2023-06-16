@@ -3,8 +3,10 @@ import UIKit
 import SnapKit
 
 protocol ISearchView: AnyObject {
-    var tapCellHandler: (() -> Void)? { get set }
+    var tapAddToFavsHandler: ((_ filmID: Int) -> Void)? { get set }
+    var tapDelFromFavsHandler: ((_ filmID: Int) -> Void)? { get set }
     var tapSearchButtonHandler: ((_ text: String?) -> Void)? { get set }
+    var tapCellHandler: ((_ filmID: Int)-> Void)? { get set }
     var films: [IFilmCellModel] { get set }
     
     func reloadData()
@@ -14,8 +16,10 @@ protocol ISearchView: AnyObject {
 final class SearchView: UIView {
     
     // этот хендлер сетится из презентера
-    var tapCellHandler: (() -> Void)?
+    var tapAddToFavsHandler: ((_ filmID: Int) -> Void)?
     var tapSearchButtonHandler: ((_ text: String?) -> Void)?
+    var tapCellHandler: ((_ filmID: Int) -> Void)?
+    var tapDelFromFavsHandler: ((_ filmID: Int) -> Void)?
     
     // в этот массив я просечиваю презентером данные для таблицы
     var films: [IFilmCellModel] = []
@@ -67,7 +71,25 @@ extension SearchView: ISearchView {
     }
 }
 
-extension SearchView: UITableViewDelegate { }
+extension SearchView: FilmCellViewDelegate {
+    func deleteFromFavsTapped(_ cell: FilmCellView) {
+        if let indexPath = tableView.indexPath(for: cell) {
+            tapDelFromFavsHandler?(films[indexPath.row].id)
+        }
+    }
+    
+    func addToFavsTapped(_ cell: FilmCellView) {
+        if let indexPath = tableView.indexPath(for: cell) {
+            tapAddToFavsHandler?(films[indexPath.row].id)
+        }
+    }
+}
+
+extension SearchView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tapCellHandler?(films[indexPath.row].id)
+    }
+}
 
 extension SearchView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,6 +103,8 @@ extension SearchView: UITableViewDataSource {
 
         let filmCellModel = films[indexPath.row]
         cell.setDataToFilmCellView(filmCellModel)
+        cell.delegate = self
+        cell.contentView.isUserInteractionEnabled = false
         
         return cell
     }
@@ -102,6 +126,7 @@ private extension SearchView {
         self.addSubview(tableView)
         self.addSubview(searchBar)
         
+        searchBar.backgroundImage = UIImage()
         searchBar.snp.makeConstraints { make in
             make.leading.trailing.top.equalTo(self.safeAreaLayoutGuide)
         }

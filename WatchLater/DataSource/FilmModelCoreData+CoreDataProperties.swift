@@ -1,10 +1,3 @@
-//
-//  FilmModelCoreData+CoreDataProperties.swift
-//  WatchLater
-//
-//  Created by Хайдар Даукаев on 13.06.2023.
-//
-//
 
 import Foundation
 import CoreData
@@ -12,14 +5,15 @@ import CoreData
 
 extension FilmModelCoreData {
 
-//    @nonobjc public class func fetchRequest() -> NSFetchRequest<FilmModelCoreData> {
-//        return NSFetchRequest<FilmModelCoreData>(entityName: "FilmModelCoreData")
-//    }
-
-    @NSManaged public var id: Int64
+    @NSManaged public var id: Int
     @NSManaged public var name: String?
     @NSManaged public var filmDescription: String?
+    @NSManaged public var type: String?
+    @NSManaged public var year: Int
     @NSManaged public var poster: Data?
+    @NSManaged public var genre: String?
+    @NSManaged public var country: String?
+    @NSManaged public var rating: Float
 
 }
 

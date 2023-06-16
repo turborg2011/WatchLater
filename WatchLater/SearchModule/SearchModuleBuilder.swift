@@ -8,6 +8,7 @@ final class SearchModuleBuilder {
         let presenter = SearchPresenter(interactor: interactor, router: router)
         interactor.presenter = presenter
         let viewController = SearchViewController(presenter: presenter)
+        presenter.viewController = viewController
         
         return viewController
     }
