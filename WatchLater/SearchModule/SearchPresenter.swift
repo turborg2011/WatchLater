@@ -10,6 +10,7 @@ protocol ISearchPresenter: AnyObject {
     func didAddFilm(_ filmID: Int)
     func didDeleteFilm(_ filmID: Int)
     func didLoadFilmFromCoreData(_ filmData: FilmDetailInfoModel)
+    func viewDidAppear(_ text: String)
 }
 
 final class SearchPresenter {
@@ -53,6 +54,10 @@ extension SearchPresenter: ISearchPresenter {
             print("delete button tapped")
         }
         
+    }
+    
+    func viewDidAppear(_ text: String) {
+        self.showSearchResults(filmName: text)
     }
     
     func showSearchResults(filmName: String) {

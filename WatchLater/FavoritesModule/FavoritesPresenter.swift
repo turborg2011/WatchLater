@@ -7,6 +7,7 @@ protocol IFavoritesPresenter: AnyObject {
     func viewDidAppear()
     func didDeleteAllFavFilms()
     func didDeleteFilm(_ filmID: Int)
+    func didAddFilm(_ filmID: Int)
 }
 
 final class FavoritesPresenter: IFavoritesPresenter {
@@ -32,6 +33,11 @@ final class FavoritesPresenter: IFavoritesPresenter {
         
         self.view?.tapDeleteButtonHandler = { [weak self] in
             self?.favoritesInteractor.deleteAllFavFilms()
+        }
+        
+        self.view?.tapAddToFavsButtonHandler = { [weak self] filmID in
+            print("ID = \(filmID)")
+            self?.favoritesInteractor.saveFilm(filmID)
         }
         
         self.view?.tapDeleteFromFavsButtonHandler = { [weak self] filmID in
@@ -61,5 +67,9 @@ final class FavoritesPresenter: IFavoritesPresenter {
             film.id == filmID
         })
         self.view?.reloadData()
+    }
+    
+    func didAddFilm(_ filmID: Int) {
+        print("PRES: film successfully added")
     }
 }

@@ -8,6 +8,7 @@ protocol IFavoritesView: AnyObject {
     var films: [IFilmCellModel] { get set }
     var tapDeleteButtonHandler: (() -> Void)? { get set }
     var tapDeleteFromFavsButtonHandler: ((_ filmID: Int) -> Void)? { get set }
+    var tapAddToFavsButtonHandler: ((_ filmID: Int) -> Void)? { get set }
     
     func reloadData()
 }
@@ -18,13 +19,14 @@ final class FavoritesView: UIView {
     var tapCellHandler: ((_ filmID: Int) -> Void)?
     var tapDeleteButtonHandler: (() -> Void)?
     var tapDeleteFromFavsButtonHandler: ((_ filmID: Int) -> Void)?
+    var tapAddToFavsButtonHandler: ((_ filmID: Int) -> Void)?
     
     // в этот массив я просечиваю презентером данные для таблицы
     var films: [IFilmCellModel] = []
     
     private lazy var tableView: UITableView = {
         let table = UITableView()
-        table.register(FavoritesFilmCellView.self, forCellReuseIdentifier: "\(FavoritesFilmCellView.self)")
+        table.register(FilmCellView.self, forCellReuseIdentifier: "\(FilmCellView.self)")
         table.rowHeight = 141.42
         table.dataSource = self
         table.delegate = self
@@ -75,7 +77,7 @@ extension FavoritesView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FavoritesFilmCellView.self)") as? FavoritesFilmCellView else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(FilmCellView.self)") as? FilmCellView else {
             return UITableViewCell()
         }
 
@@ -89,8 +91,14 @@ extension FavoritesView: UITableViewDataSource {
     }
 }
 
-extension FavoritesView: FavoritesFilmCellViewDelegate {
-    func deleteFromFavsTapped(_ cell: FavoritesFilmCellView) {
+extension FavoritesView: FilmCellViewDelegate {
+    func addToFavsTapped(_ cell: FilmCellView) {
+        if let indexPath = tableView.indexPath(for: cell) {
+            tapAddToFavsButtonHandler?(films[indexPath.row].id)
+        }
+    }
+    
+    func deleteFromFavsTapped(_ cell: FilmCellView) {
         if let indexPath = tableView.indexPath(for: cell) {
             tapDeleteFromFavsButtonHandler?(films[indexPath.row].id)
         }

@@ -23,7 +23,7 @@ struct FilmSearchResults: Codable {
 }
 
 struct FilmSearchModel: Codable {
-    var id: Int
+    var id: Int?
     var name: String?
     var names: [String]?
     var description: String?
@@ -57,7 +57,7 @@ struct FilmSearchModel: Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
+        id = try container.decode(Int?.self, forKey: .id)
         name = try container.decode(String?.self, forKey: .name)
         names = try container.decode([String]?.self, forKey: .names)
         description = try container.decode(String?.self, forKey: .description)

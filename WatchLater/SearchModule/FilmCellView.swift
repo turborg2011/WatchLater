@@ -18,9 +18,12 @@ class FilmCellView: UITableViewCell {
     let filmRating = UILabel()
     let filmYear = UILabel()
     let filmGenre = UILabel()
-    let addDelFilmToFavoritesButton = UIButton()
+    let addFilmToFavoritesButton = UIButton()
+    let delFilmFromFavoritesButton = UIButton()
     
     var delegate: FilmCellViewDelegate?
+    
+    private var isDownloaded: Bool = false
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -34,10 +37,16 @@ class FilmCellView: UITableViewCell {
     
     @objc func tapAddToFavs(_ sender: UIButton!) {
         delegate?.addToFavsTapped(self)
+        
+        isDownloaded = true
+        changeButtons()
     }
     
     @objc func delFromFavs(_ sender: UIButton!) {
         delegate?.deleteFromFavsTapped(self)
+        
+        isDownloaded = false
+        changeButtons()
     }
 }
 
@@ -48,17 +57,27 @@ extension FilmCellView: IFilmCellView {
         filmRating.text = "⭐️" + (filmCellModel.filmRating ?? "-")
         filmYear.text = "Year " + (filmCellModel.filmYear ?? "-")
         filmGenre.text = "Genre " + (filmCellModel.filmGenre ?? "-")
+        
+        isDownloaded = filmCellModel.isDownloaded
+        changeButtons()
     }
 }
 
 private extension FilmCellView {
+    
+    func changeButtons() {
+        addFilmToFavoritesButton.isHidden = isDownloaded
+        delFilmFromFavoritesButton.isHidden = !isDownloaded
+    }
+    
     func setupCellUI() {
         self.addSubview(filmPoster)
         self.addSubview(filmName)
-        self.addSubview(addDelFilmToFavoritesButton)
+        self.addSubview(addFilmToFavoritesButton)
         self.addSubview(filmYear)
         self.addSubview(filmRating)
         self.addSubview(filmGenre)
+        self.addSubview(delFilmFromFavoritesButton)
         
         filmPoster.contentMode = .scaleAspectFit
         filmPoster.clipsToBounds = true
@@ -117,11 +136,24 @@ private extension FilmCellView {
             make.leading.equalTo(filmPoster.snp.trailing).offset(20)
         }
         
-        addDelFilmToFavoritesButton.backgroundColor = .systemBlue
-        addDelFilmToFavoritesButton.setTitle("add to favs", for: .normal)
-        addDelFilmToFavoritesButton.layer.cornerRadius = 15
-        addDelFilmToFavoritesButton.addTarget(self, action: #selector(tapAddToFavs(_:)), for: .touchUpInside)
-        addDelFilmToFavoritesButton.snp.makeConstraints { make in
+        changeButtons()
+        
+        addFilmToFavoritesButton.backgroundColor = .systemBlue
+        addFilmToFavoritesButton.setTitle("add to favs", for: .normal)
+        addFilmToFavoritesButton.layer.cornerRadius = 15
+        addFilmToFavoritesButton.addTarget(self, action: #selector(tapAddToFavs(_:)), for: .touchUpInside)
+        addFilmToFavoritesButton.snp.makeConstraints { make in
+            make.top.equalTo(filmGenre.snp.bottom).offset(10)
+            make.bottom.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview().inset(20)
+            make.leading.equalTo(filmPoster.snp.trailing).offset(20)
+        }
+        
+        delFilmFromFavoritesButton.backgroundColor = .systemRed
+        delFilmFromFavoritesButton.setTitle("delete from favs", for: .normal)
+        delFilmFromFavoritesButton.layer.cornerRadius = 15
+        delFilmFromFavoritesButton.addTarget(self, action: #selector(delFromFavs(_:)), for: .touchUpInside)
+        delFilmFromFavoritesButton.snp.makeConstraints { make in
             make.top.equalTo(filmGenre.snp.bottom).offset(10)
             make.bottom.equalToSuperview().inset(10)
             make.trailing.equalToSuperview().inset(20)

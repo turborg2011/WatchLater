@@ -8,6 +8,7 @@ protocol IFilmCellModel {
     var filmRating: String? { get set }
     var filmYear: String? { get set }
     var filmGenre: String? { get set }
+    var isDownloaded: Bool { get set }
 }
 
 struct FilmCellModel: IFilmCellModel {
@@ -18,4 +19,5 @@ struct FilmCellModel: IFilmCellModel {
     var filmRating: String?
     var filmYear: String?
     var filmGenre: String?
+    var isDownloaded: Bool = false
 }

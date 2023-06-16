@@ -33,7 +33,6 @@
 		4686DCD02A3C30790033E23E /* LEMONMILK-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4686DCC82A3C30790033E23E /* LEMONMILK-Light.otf */; };
 		4686DCD12A3C30790033E23E /* LEMONMILK-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4686DCC92A3C30790033E23E /* LEMONMILK-Regular.otf */; };
 		4686DCD22A3C30790033E23E /* LEMONMILK-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4686DCCA2A3C30790033E23E /* LEMONMILK-MediumItalic.otf */; };
-		4686DCD42A3C33640033E23E /* TestStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4686DCD32A3C33640033E23E /* TestStoryBoard.storyboard */; };
 		46C5A12F2A2B252E0091B0EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C5A12E2A2B252E0091B0EA /* AppDelegate.swift */; };
 		46C5A1312A2B252E0091B0EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C5A1302A2B252E0091B0EA /* SceneDelegate.swift */; };
 		46C5A1332A2B252E0091B0EA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C5A1322A2B252E0091B0EA /* SearchViewController.swift */; };
@@ -82,7 +81,6 @@
 		4686DCC82A3C30790033E23E /* LEMONMILK-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LEMONMILK-Light.otf"; sourceTree = "<group>"; };
 		4686DCC92A3C30790033E23E /* LEMONMILK-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LEMONMILK-Regular.otf"; sourceTree = "<group>"; };
 		4686DCCA2A3C30790033E23E /* LEMONMILK-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LEMONMILK-MediumItalic.otf"; sourceTree = "<group>"; };
-		4686DCD32A3C33640033E23E /* TestStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestStoryBoard.storyboard; sourceTree = "<group>"; };
 		46C5A12B2A2B252E0091B0EA /* WatchLater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchLater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C5A12E2A2B252E0091B0EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46C5A1302A2B252E0091B0EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -214,7 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				46C5A16D2A331A9A0091B0EA /* FilmCellView.swift */,
-				4686DCD32A3C33640033E23E /* TestStoryBoard.storyboard */,
 				46C5A1752A3333A00091B0EA /* SearchView.swift */,
 				46C5A1322A2B252E0091B0EA /* SearchViewController.swift */,
 				46C5A1632A33174D0091B0EA /* SearchInteractor.swift */,
@@ -346,7 +343,6 @@
 				4686DCCE2A3C30790033E23E /* LEMONMILK-Medium.otf in Resources */,
 				46C5A13B2A2B252F0091B0EA /* LaunchScreen.storyboard in Resources */,
 				46C5A1382A2B252F0091B0EA /* Assets.xcassets in Resources */,
-				4686DCD42A3C33640033E23E /* TestStoryBoard.storyboard in Resources */,
 				4686DCCD2A3C30790033E23E /* LEMONMILK-RegularItalic.otf in Resources */,
 				4686DCD22A3C30790033E23E /* LEMONMILK-MediumItalic.otf in Resources */,
 				4686DCCC2A3C30790033E23E /* LEMONMILK-BoldItalic.otf in Resources */,

@@ -32,7 +32,8 @@ final class DataSourceManager: NSObject {
                            poster: Data?,
                            genre: String?,
                            country: String?,
-                           rating: Float
+                           rating: Float,
+                           commentary: String?
     ) {
         guard let filmEntityDescription = NSEntityDescription.entity(forEntityName: "FilmModelCoreData", in: context) else {
             return
@@ -50,6 +51,20 @@ final class DataSourceManager: NSObject {
         filmCoreData.genre = genre
         filmCoreData.country = country
         filmCoreData.rating = rating
+        filmCoreData.commentary = commentary
+        
+        appDelegate.saveContext()
+    }
+    
+    public func updateFilmCommentary(filmID: Int, commentary: String?) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FilmModelCoreData")
+        do {
+            guard let films = try? context.fetch(fetchRequest) as? [FilmModelCoreData],
+                  let film = films.first(where: { $0.id == filmID }) else {
+                return
+            }
+            film.commentary = commentary
+        }
         
         appDelegate.saveContext()
     }
@@ -90,4 +105,17 @@ final class DataSourceManager: NSObject {
         }
     }
     
+    public func getSavedFilmsIDs() -> [Int] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FilmModelCoreData")
+        do {
+            var filmsIDs: [Int] = []
+            guard let films = try? context.fetch(fetchRequest) as? [FilmModelCoreData] else {
+                return filmsIDs
+            }
+            films.forEach { film in
+                filmsIDs.append(film.id)
+            }
+            return filmsIDs
+        }
+    }
 }

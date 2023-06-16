@@ -28,6 +28,13 @@ final class SearchViewController: UIViewController {
         
         self.searchPresenter.viewDidLoad(searchView)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let text = self.searchView.searchBarText
+        self.searchPresenter.viewDidAppear(text)
+    }
 }
 
 extension SearchViewController: ISearchViewController {}

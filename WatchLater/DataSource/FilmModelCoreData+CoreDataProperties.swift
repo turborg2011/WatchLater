@@ -14,6 +14,7 @@ extension FilmModelCoreData {
     @NSManaged public var genre: String?
     @NSManaged public var country: String?
     @NSManaged public var rating: Float
+    @NSManaged public var commentary: String?
 
 }
 

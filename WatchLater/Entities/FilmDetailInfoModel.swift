@@ -10,4 +10,6 @@ struct FilmDetailInfoModel {
     var genres: String?
     var countries: String?
     var rating: Float?
+    var isDownloaded: Bool = false
+    var commentary: String?
 }

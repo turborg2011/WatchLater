@@ -8,6 +8,7 @@ protocol ISearchView: AnyObject {
     var tapSearchButtonHandler: ((_ text: String?) -> Void)? { get set }
     var tapCellHandler: ((_ filmID: Int)-> Void)? { get set }
     var films: [IFilmCellModel] { get set }
+    var searchBarText: String { get set }
     
     func reloadData()
     func reloadFilmPosterByID(filmID: Int, image: UIImage)
@@ -20,6 +21,8 @@ final class SearchView: UIView {
     var tapSearchButtonHandler: ((_ text: String?) -> Void)?
     var tapCellHandler: ((_ filmID: Int) -> Void)?
     var tapDelFromFavsHandler: ((_ filmID: Int) -> Void)?
+    
+    var searchBarText: String = ""
     
     // в этот массив я просечиваю презентером данные для таблицы
     var films: [IFilmCellModel] = []
@@ -58,7 +61,9 @@ final class SearchView: UIView {
 
 extension SearchView: ISearchView {
     func reloadData() {
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func reloadFilmPosterByID(filmID: Int, image: UIImage) {
@@ -114,7 +119,9 @@ extension SearchView: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) { }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        UIApplication.shared.endEditing()
         tapSearchButtonHandler?(searchBar.text)
+        searchBarText = searchBar.text ?? ""
     }
 }
 
