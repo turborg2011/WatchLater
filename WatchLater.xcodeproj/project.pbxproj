@@ -73,6 +73,7 @@
 		4686DCDB2A3D5D920033E23E /* detailViewUIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewUIConfig.swift; sourceTree = "<group>"; };
 		4686DCDD2A3D63FB0033E23E /* favoritesViewUIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoritesViewUIConfig.swift; sourceTree = "<group>"; };
 		4686DCDF2A3D646E0033E23E /* filmCellUIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filmCellUIConfig.swift; sourceTree = "<group>"; };
+		4686DCE12A3D97A50033E23E /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		46C5A12B2A2B252E0091B0EA /* WatchLater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchLater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C5A12E2A2B252E0091B0EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46C5A1302A2B252E0091B0EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +171,7 @@
 				4686DCB32A3AE56E0033E23E /* DetailInfoModule */,
 				4686DC8B2A3606E50033E23E /* FavoritesModule */,
 				46C5A1612A33165F0091B0EA /* SearchModule */,
+				4686DCE12A3D97A50033E23E /* Config.xcconfig */,
 			);
 			path = WatchLater;
 			sourceTree = "<group>";
@@ -384,6 +386,7 @@
 /* Begin XCBuildConfiguration section */
 		46C5A13D2A2B252F0091B0EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4686DCE12A3D97A50033E23E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -444,6 +447,7 @@
 		};
 		46C5A13E2A2B252F0091B0EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4686DCE12A3D97A50033E23E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -498,6 +502,7 @@
 		};
 		46C5A1402A2B252F0091B0EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4686DCE12A3D97A50033E23E /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -525,6 +530,7 @@
 		};
 		46C5A1412A2B252F0091B0EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4686DCE12A3D97A50033E23E /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
