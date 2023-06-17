@@ -48,7 +48,7 @@ extension DetailView: IDetailView {
     func setData(_ film: FilmDetailInfoModel) {
         var config = UIImage.SymbolConfiguration(paletteColors: [.systemGray5])
         config = config.applying(UIImage.SymbolConfiguration(scale: .small))
-        let imagePlaceHolder = UIImage(systemName: "photo.fill", withConfiguration: config)
+        let imagePlaceHolder = UIImage(systemName: "photo", withConfiguration: config)
         
         filmPoster.image = film.poster ?? imagePlaceHolder
         filmNameLabel.text = film.name ?? "-"
@@ -84,13 +84,12 @@ private extension DetailView {
         self.addSubview(mainView)
         
         mainView.addSubview(filmNameLabel)
-        //mainView.addSubview(deleteButton)
         
-        // film name label
-        filmNameLabel.font = UIFont(name: "GeezaPro-bold", size: 18)
+        // Film name label
+        filmNameLabel.font = uiFonts.filmNameLabelFont
         filmNameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(10)
+            make.leading.trailing.equalToSuperview().inset(detailViewUIConfig.insetsFromMain)
         }
         
         // Poster and details
@@ -103,7 +102,7 @@ private extension DetailView {
                                                           filmCountries,
                                                           filmGenres])
             stackView.axis = .vertical
-            stackView.spacing = 10
+            stackView.spacing = detailViewUIConfig.detailStackViewSpacing
             stackView.distribution = .fillEqually
             
             return stackView
@@ -117,19 +116,19 @@ private extension DetailView {
         filmPoster.contentMode = .scaleAspectFit
         filmPoster.snp.makeConstraints { make in
             make.top.bottom.leading.equalToSuperview()
-            make.width.equalTo(100)
+            make.width.equalTo(detailViewUIConfig.filmPosterWidth)
         }
         
         posterAndDetailView.snp.makeConstraints { make in
-            make.height.equalTo(150)
-            make.leading.trailing.equalToSuperview().inset(10)
-            make.top.equalTo(filmNameLabel.snp.bottom).offset(10)
+            make.height.equalTo(detailViewUIConfig.posterAndDetailViewHeight)
+            make.leading.trailing.equalToSuperview().inset(detailViewUIConfig.posterAndDetailViewInsets)
+            make.top.equalTo(filmNameLabel.snp.bottom).offset(detailViewUIConfig.posterAndDetailViewInsets)
         }
         
         detailStackView.snp.makeConstraints { make in
             make.top.bottom.trailing.equalToSuperview()
-            make.leading.equalTo(filmPoster.snp.trailing).offset(10)
-            make.height.equalTo(150)
+            make.leading.equalTo(filmPoster.snp.trailing).offset(detailViewUIConfig.posterAndDetailViewInsets)
+            make.height.equalTo(detailViewUIConfig.posterAndDetailViewHeight)
         }
         
         // Description
@@ -139,30 +138,29 @@ private extension DetailView {
         mainView.addSubview(descBackground)
         
         descBackground.backgroundColor = .clear
-        descBackground.layer.cornerRadius = 10
         descBackground.addSubview(descriptionLabel)
-        //descriptionLabel.backgroundColor = .systemRed
         descriptionLabel.text = "Description"
-        descriptionLabel.font = UIFont(name: "GeezaPro-bold", size: 16)
+        descriptionLabel.font = uiFonts.descriptionLabelFont
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(10)
-            make.leading.equalToSuperview().inset(10)
-            make.height.equalTo(20)
+            make.top.equalToSuperview().inset(detailViewUIConfig.descLabelInsets)
+            make.leading.equalToSuperview().inset(detailViewUIConfig.descLabelInsets)
+            make.height.equalTo(detailViewUIConfig.descriptionLabelHeight)
         }
         
         descBackground.addSubview(filmDescription)
         
         filmDescription.backgroundColor = .clear
         filmDescription.isEditable = false
+        filmDescription.font = uiFonts.filmDescriptionFont
         filmDescription.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview().inset(5)
+            make.leading.trailing.bottom.equalToSuperview().inset(detailViewUIConfig.filmDescriptionInsets)
             make.top.equalTo(descriptionLabel.snp.bottom)
         }
         
         descBackground.snp.makeConstraints { make in
-            make.height.equalTo(220)
+            make.height.equalTo(detailViewUIConfig.descBackgroundHeight)
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(posterAndDetailView.snp.bottom).offset(10)
+            make.top.equalTo(posterAndDetailView.snp.bottom).offset(detailViewUIConfig.descBackgroundTopOffset)
         }
         
         // Commentary
@@ -172,25 +170,22 @@ private extension DetailView {
         mainView.addSubview(commBackground)
         
         commBackground.backgroundColor = .systemBackground
-        commBackground.layer.cornerRadius = 10
         commBackground.addSubview(commLabel)
-        //commLabel.backgroundColor = .systemRed
         commLabel.text = "Commentary"
-        commLabel.font = UIFont(name: "GeezaPro-bold", size: 16)
+        commLabel.font = uiFonts.commLabelFont
         commLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(5)
-            make.leading.equalToSuperview().inset(10)
-            make.height.equalTo(20)
+            make.top.equalToSuperview().inset(detailViewUIConfig.commLabelTopInset)
+            make.leading.equalToSuperview().inset(detailViewUIConfig.commLabelLeadingInset)
+            make.height.equalTo(detailViewUIConfig.commLabelHeight)
         }
         
         commBackground.addSubview(commentary)
-        
-        //commentary.backgroundColor = .systemBlue
+
         commentary.placeholder = "Write your comment here"
         commentary.contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
         commentary.delegate = self
         commentary.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview().inset(10)
+            make.leading.trailing.bottom.equalToSuperview().inset(detailViewUIConfig.commentaryInsets)
             make.top.equalTo(commLabel.snp.bottom)
         }
         
@@ -199,37 +194,8 @@ private extension DetailView {
             make.top.equalTo(descBackground.snp.bottom)
         }
         
-        
-        // Delete button
-//        deleteButton.layer.cornerRadius = 14
-//        deleteButton.snp.makeConstraints { make in
-//            make.height.equalTo(50)
-//            make.leading.trailing.bottom.equalToSuperview()
-//            make.top.equalTo(commBackground.snp.bottom).offset(10)
-//        }
-//
-//        filmYear.backgroundColor = .systemGray
-//        filmType.backgroundColor = .systemGray
-//        filmRating.backgroundColor = .systemGray
-//        filmCountries.backgroundColor = .systemGray
-//        filmDescription.backgroundColor = .systemGray
-//        filmNameLabel.backgroundColor = .systemGray
-//        filmPoster.backgroundColor = .systemGray
-//        filmGenres.backgroundColor = .systemGray
-//        commentary.backgroundColor = .systemGray
-        
-//        guard let miniFont = UIFont(name: "GeezaPro", size: 18) else {
-//            fatalError("""
-//                Failed to load the "CustomFont-Light" font.
-//                Make sure the font file is included in the project and the font name is spelled correctly.
-//                """
-//            )
-//        }
-        
-        //filmRating.font = miniFont
-        
         mainView.snp.makeConstraints { make in
-            make.edges.equalTo(self.safeAreaLayoutGuide).inset(10)
+            make.edges.equalTo(self.safeAreaLayoutGuide).inset(detailViewUIConfig.mainInsets)
         }
     }
 }

@@ -4,7 +4,6 @@ import SnapKit
 
 protocol IFavoritesView: AnyObject {
     var tapCellHandler: ((_ filmID: Int) -> Void)? { get set }
-    //var tapSearchButtonHandler: ((_ text: String?) -> Void)? { get set }
     var films: [IFilmCellModel] { get set }
     var tapDeleteFromFavsButtonHandler: ((_ filmID: Int) -> Void)? { get set }
     var tapAddToFavsButtonHandler: ((_ filmID: Int) -> Void)? { get set }
@@ -25,7 +24,7 @@ final class FavoritesView: UIView {
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(FilmCellView.self, forCellReuseIdentifier: "\(FilmCellView.self)")
-        table.rowHeight = 141.42
+        table.rowHeight = favoritesViewUIConfig.tableRowHeight
         table.dataSource = self
         table.delegate = self
         
@@ -44,8 +43,9 @@ final class FavoritesView: UIView {
 
 extension FavoritesView: IFavoritesView {
     func reloadData() {
-        self.tableView.reloadData()
-        print("VIEW: REload data, films = \(films.count)")
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 

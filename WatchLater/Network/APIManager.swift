@@ -16,12 +16,10 @@ class APIManager: IAPIManager {
     func getRandomFilm() -> FilmModel? {
         var randomFilm: FilmModel?
         
-        // вынести url отдельный файл
-        let url = "https://api.kinopoisk.dev/v1.3/movie/random"
+        let url = endpointsAPI.randomFilmURL
         let headers: HTTPHeaders = [
             "accept": "application/json",
-            // вынести ключ в keychain
-            "X-API-KEY": "WTTWJV6-NQAMM86-MQ32AR1-DHB6A03"
+            "X-API-KEY": endpointsAPI.token
         ]
         
         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseData { response in
@@ -52,8 +50,6 @@ class APIManager: IAPIManager {
         let cache = ImageCache.default
         cache.clearMemoryCache()
         
-        //let processor = RoundCornerImageProcessor(cornerRadius: 30)
-        
         KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
             switch result {
             case .success(let value):
@@ -67,14 +63,11 @@ class APIManager: IAPIManager {
     
     func getSearchResultsByFilmName(filmName: String, completion: @escaping ([FilmSearchModel]) -> Void) {
         var filmSearchResults: [FilmSearchModel] = []
-        
-        // вынести url в userdefaults
-        let url = "https://api.kinopoisk.dev/v1.2/movie/search"
-        //let url = ""
+
+        let url = endpointsAPI.searchURL
         let headers: HTTPHeaders = [
             "accept": "application/json",
-            // вынести ключ в keychain
-            "X-API-KEY": "WTTWJV6-NQAMM86-MQ32AR1-DHB6A03"
+            "X-API-KEY": endpointsAPI.token
         ]
         
         let parameters: Parameters = [
@@ -98,13 +91,11 @@ class APIManager: IAPIManager {
     }
     
     func getFilmByID(filmID: Int, completion: @escaping (FilmModel?) -> Void) {
-        // вынести url в userdefaults
-        let url = "https://api.kinopoisk.dev/v1.3/movie/\(filmID)"
-        //let url = ""
+        
+        let url = endpointsAPI.getFilmByIDURL + "\(filmID)"
         let headers: HTTPHeaders = [
             "accept": "application/json",
-            // вынести ключ в keychain
-            "X-API-KEY": "WTTWJV6-NQAMM86-MQ32AR1-DHB6A03"
+            "X-API-KEY": endpointsAPI.token
         ]
         
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers).responseData { response in

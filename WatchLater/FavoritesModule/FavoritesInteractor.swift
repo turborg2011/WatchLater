@@ -24,7 +24,6 @@ extension FavoritesInteractor: IFavoritesInteractor {
         films.forEach { filmCoreData in
             filmsCellModel.append(converCoreDataToFilmCellModel(coreDataModel: filmCoreData))
         }
-        print("INTER: items in filmsCellModel == \(filmsCellModel.count)")
         self.presenter?.didLoadFavoriteFilms(filmsCellModel)
     }
     
@@ -74,7 +73,6 @@ extension FavoritesInteractor: IFavoritesInteractor {
                                                             rating: film.rating?.kp ?? 0,
                                                             commentary: ""
                         )
-                        print("filmsucsessfullySaved")
                         self?.presenter?.didAddFilm(filmID)
                     }
                 }
@@ -92,7 +90,9 @@ extension FavoritesInteractor: IFavoritesInteractor {
 
 private extension FavoritesInteractor {
     func converCoreDataToFilmCellModel(coreDataModel: FilmModelCoreData) -> FilmCellModel {
-        var posterImage: UIImage? = UIImage(systemName: "photo")
+        var config = UIImage.SymbolConfiguration(paletteColors: [.systemGray5])
+        config = config.applying(UIImage.SymbolConfiguration(scale: .small))
+        var posterImage: UIImage? = UIImage(systemName: "photo", withConfiguration: config)
         
         if let posterData = coreDataModel.poster {
             posterImage = UIImage(data: posterData)

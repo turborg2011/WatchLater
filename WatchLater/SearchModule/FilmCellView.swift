@@ -82,82 +82,62 @@ private extension FilmCellView {
         filmPoster.contentMode = .scaleAspectFit
         filmPoster.clipsToBounds = true
         filmPoster.snp.makeConstraints { make in
-            make.top.bottom.leading.equalToSuperview().inset(10)
-            make.width.equalTo(100)
+            make.top.bottom.leading.equalToSuperview().inset(filmCellUIConfig.filmPosterInsets)
+            make.width.equalTo(filmCellUIConfig.filmPosterWidth)
         }
         
-        guard let customFont = UIFont(name: "GeezaPro-Bold", size: 20) else {
-            fatalError("""
-                Failed to load the "CustomFont-Light" font.
-                Make sure the font file is included in the project and the font name is spelled correctly.
-                """
-            )
-        }
-        
-        guard let miniFont = UIFont(name: "GeezaPro", size: 15) else {
-            fatalError("""
-                Failed to load the "CustomFont-Light" font.
-                Make sure the font file is included in the project and the font name is spelled correctly.
-                """
-            )
-        }
-        
-        filmName.font = customFont
-        //filmName.backgroundColor = .systemGray
+        filmName.font = uiFonts.cellFilmNameFont
         filmName.snp.makeConstraints { make in
-            make.height.equalTo(30)
-            make.top.equalToSuperview().inset(10)
-            make.leading.equalTo(filmPoster.snp.trailing).offset(20)
-            make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(filmCellUIConfig.filmNameHeight)
+            make.top.equalToSuperview().inset(filmCellUIConfig.filmNameTopInset)
+            make.leading.equalTo(filmPoster.snp.trailing).offset(filmCellUIConfig.filmNameLeadingTrailingInset)
+            make.trailing.equalToSuperview().inset(filmCellUIConfig.filmNameLeadingTrailingInset)
         }
         
-        filmYear.font = miniFont
-        //filmYear.backgroundColor = .systemGray
+        filmYear.font = uiFonts.cellFilmYearRatingFont
         filmYear.snp.makeConstraints { make in
-            make.width.equalTo(130)
-            make.leading.equalTo(filmRating.snp.trailing).offset(10)
-            make.top.equalTo(filmName.snp.bottom).offset(7)
+            make.width.equalTo(filmCellUIConfig.filmYearWidth)
+            make.leading.equalTo(filmRating.snp.trailing).offset(filmCellUIConfig.filmYearLeadingOffset)
+            make.top.equalTo(filmName.snp.bottom).offset(filmCellUIConfig.filmYearTopOffset)
             make.bottom.equalTo(filmRating)
         }
         
-        filmRating.font = miniFont
-        //filmRating.backgroundColor = .systemGray
+        filmRating.font = uiFonts.cellFilmYearRatingFont
         filmRating.snp.makeConstraints { make in
-            make.top.equalTo(filmName.snp.bottom).offset(7)
-            make.trailing.equalTo(filmYear.snp.leading).offset(-10)
-            make.leading.equalTo(filmPoster.snp.trailing).offset(20)
+            make.top.equalTo(filmName.snp.bottom).offset(filmCellUIConfig.filmRatingTopOffset)
+            make.trailing.equalTo(filmYear.snp.leading).offset(filmCellUIConfig.filmRatingTrailingOffset)
+            make.leading.equalTo(filmPoster.snp.trailing).offset(filmCellUIConfig.filmRatingLeadingOffset)
         }
         
-        filmGenre.font = miniFont
-        //filmGenre.backgroundColor = .systemGray
+        filmGenre.font = uiFonts.cellFilmYearRatingFont
         filmGenre.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(20)
-            make.top.equalTo(filmRating.snp.bottom).offset(7)
-            make.leading.equalTo(filmPoster.snp.trailing).offset(20)
+            make.trailing.equalToSuperview().inset(filmCellUIConfig.filmGenreTrailingInset)
+            make.top.equalTo(filmRating.snp.bottom).offset(filmCellUIConfig.filmGenreTopOffset)
+            make.leading.equalTo(filmPoster.snp.trailing).offset(filmCellUIConfig.filmGenreLeadingOffset)
         }
         
         changeButtons()
         
         addFilmToFavoritesButton.backgroundColor = .systemBlue
         addFilmToFavoritesButton.setTitle("add to favs", for: .normal)
-        addFilmToFavoritesButton.layer.cornerRadius = 15
+        addFilmToFavoritesButton.layer.cornerRadius = filmCellUIConfig.addDelButtonCornerRadius
         addFilmToFavoritesButton.addTarget(self, action: #selector(tapAddToFavs(_:)), for: .touchUpInside)
         addFilmToFavoritesButton.snp.makeConstraints { make in
-            make.top.equalTo(filmGenre.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().inset(10)
-            make.trailing.equalToSuperview().inset(20)
-            make.leading.equalTo(filmPoster.snp.trailing).offset(20)
+            make.top.equalTo(filmGenre.snp.bottom).offset(filmCellUIConfig.addDelButtonTopBottomOffset)
+            make.bottom.equalToSuperview().inset(filmCellUIConfig.addDelButtonTopBottomOffset)
+            make.trailing.equalToSuperview().inset(filmCellUIConfig.addDelButtonTrailingInset)
+            make.leading.equalTo(filmPoster.snp.trailing).offset(filmCellUIConfig.addDelButtonLeadingOffset)
         }
         
         delFilmFromFavoritesButton.backgroundColor = .systemRed
         delFilmFromFavoritesButton.setTitle("delete from favs", for: .normal)
-        delFilmFromFavoritesButton.layer.cornerRadius = 15
+        delFilmFromFavoritesButton.layer.cornerRadius = filmCellUIConfig.addDelButtonCornerRadius
         delFilmFromFavoritesButton.addTarget(self, action: #selector(delFromFavs(_:)), for: .touchUpInside)
         delFilmFromFavoritesButton.snp.makeConstraints { make in
-            make.top.equalTo(filmGenre.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().inset(10)
-            make.trailing.equalToSuperview().inset(20)
-            make.leading.equalTo(filmPoster.snp.trailing).offset(20)
+            make.top.equalTo(filmGenre.snp.bottom).offset(filmCellUIConfig.addDelButtonTopBottomOffset)
+            make.bottom.equalToSuperview().inset(filmCellUIConfig.addDelButtonTopBottomOffset)
+            make.trailing.equalToSuperview().inset(filmCellUIConfig.addDelButtonTrailingInset)
+            make.leading.equalTo(filmPoster.snp.trailing).offset(filmCellUIConfig.addDelButtonLeadingOffset)
         }
     }
 }

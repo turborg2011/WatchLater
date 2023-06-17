@@ -30,7 +30,6 @@ extension SearchPresenter: ISearchPresenter {
     func viewDidLoad(_ view: ISearchView) {
         self.view = view
         
-        // реализовать нажатие на кнопку поиска
         self.view?.tapSearchButtonHandler = { [weak self] text in
             guard let filmName = text else {
                 return
@@ -39,8 +38,8 @@ extension SearchPresenter: ISearchPresenter {
             self?.showSearchResults(filmName: filmName)
         }
         
-        self.view?.tapAddToFavsHandler = { filmID in
-            self.searchInteractor.saveFilm(filmID)
+        self.view?.tapAddToFavsHandler = { [weak self] filmID in
+            self?.searchInteractor.saveFilm(filmID)
         }
         
         self.view?.tapCellHandler = { [weak self] filmID in
@@ -89,7 +88,6 @@ extension SearchPresenter: ISearchPresenter {
     }
     
     func didLoadFilmFromCoreData(_ filmData: FilmDetailInfoModel) {
-        print("PRES: film loaded from core data")
         let vc = self.viewController as? UIViewController
         self.searchRouter.openModalDetailView(vc, filmData)
     }

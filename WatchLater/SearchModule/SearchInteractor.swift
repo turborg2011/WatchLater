@@ -152,7 +152,7 @@ private extension SearchInteractor {
             
             var config = UIImage.SymbolConfiguration(paletteColors: [.systemGray5])
             config = config.applying(UIImage.SymbolConfiguration(scale: .small))
-            let imagePlaceHolder = UIImage(systemName: "photo.fill", withConfiguration: config)
+            let imagePlaceHolder = UIImage(systemName: "photo", withConfiguration: config)
             
             var filmRating = "-"
             if let rating = searchModel.rating {
@@ -218,7 +218,9 @@ private extension SearchInteractor {
         }
         
         apiManager.getPosterImageByURL(urlString: filmModel.poster?.url) { [weak self] filmPosterImage in
-            let posterImage = filmPosterImage ?? UIImage(systemName: "photo")
+            var config = UIImage.SymbolConfiguration(paletteColors: [.systemGray5])
+            config = config.applying(UIImage.SymbolConfiguration(scale: .small))
+            let posterImage = filmPosterImage ?? UIImage(systemName: "photo", withConfiguration: config)
             
             var genres = ""
             if let filmGenres = filmModel.genres {
@@ -269,7 +271,9 @@ private extension SearchInteractor {
     }
     
     func converCoreDataToFilmCellModel(coreDataModel: FilmModelCoreData) -> FilmCellModel {
-        var posterImage: UIImage? = UIImage(systemName: "photo")
+        var config = UIImage.SymbolConfiguration(paletteColors: [.systemGray5])
+        config = config.applying(UIImage.SymbolConfiguration(scale: .small))
+        var posterImage: UIImage? = UIImage(systemName: "photo", withConfiguration: config)
         
         if let posterData = coreDataModel.poster {
             posterImage = UIImage(data: posterData)

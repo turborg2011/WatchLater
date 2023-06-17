@@ -16,7 +16,7 @@ protocol ISearchView: AnyObject {
 
 final class SearchView: UIView {
     
-    // этот хендлер сетится из презентера
+    // эти хендлеры сетятся из презентера
     var tapAddToFavsHandler: ((_ filmID: Int) -> Void)?
     var tapSearchButtonHandler: ((_ text: String?) -> Void)?
     var tapCellHandler: ((_ filmID: Int) -> Void)?

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4686DC8D2A3607560033E23E /* FavoritesFilmCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DC8C2A3607560033E23E /* FavoritesFilmCellView.swift */; };
 		4686DC8F2A3607620033E23E /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DC8E2A3607620033E23E /* FavoritesView.swift */; };
 		4686DC912A3607720033E23E /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DC902A3607720033E23E /* FavoritesViewController.swift */; };
 		4686DC932A36077F0033E23E /* FavoritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DC922A36077F0033E23E /* FavoritesInteractor.swift */; };
@@ -25,14 +24,11 @@
 		4686DCBD2A3AE6060033E23E /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DCBC2A3AE6060033E23E /* DetailRouter.swift */; };
 		4686DCBF2A3AE6150033E23E /* DetailModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DCBE2A3AE6150033E23E /* DetailModuleBuilder.swift */; };
 		4686DCC12A3B29510033E23E /* FilmDetailInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DCC02A3B29500033E23E /* FilmDetailInfoModel.swift */; };
-		4686DCCB2A3C30790033E23E /* LEMONMILK-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4686DCC32A3C30790033E23E /* LEMONMILK-Bold.otf */; };
-		4686DCCC2A3C30790033E23E /* LEMONMILK-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4686DCC42A3C30790033E23E /* LEMONMILK-BoldItalic.otf */; };
-		4686DCCD2A3C30790033E23E /* LEMONMILK-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4686DCC52A3C30790033E23E /* LEMONMILK-RegularItalic.otf */; };
-		4686DCCE2A3C30790033E23E /* LEMONMILK-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4686DCC62A3C30790033E23E /* LEMONMILK-Medium.otf */; };
-		4686DCCF2A3C30790033E23E /* LEMONMILK-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4686DCC72A3C30790033E23E /* LEMONMILK-LightItalic.otf */; };
-		4686DCD02A3C30790033E23E /* LEMONMILK-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4686DCC82A3C30790033E23E /* LEMONMILK-Light.otf */; };
-		4686DCD12A3C30790033E23E /* LEMONMILK-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4686DCC92A3C30790033E23E /* LEMONMILK-Regular.otf */; };
-		4686DCD22A3C30790033E23E /* LEMONMILK-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4686DCCA2A3C30790033E23E /* LEMONMILK-MediumItalic.otf */; };
+		4686DCD82A3D5A430033E23E /* endpointsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DCD72A3D5A430033E23E /* endpointsAPI.swift */; };
+		4686DCDA2A3D5C800033E23E /* uiFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DCD92A3D5C800033E23E /* uiFonts.swift */; };
+		4686DCDC2A3D5D920033E23E /* detailViewUIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DCDB2A3D5D920033E23E /* detailViewUIConfig.swift */; };
+		4686DCDE2A3D63FB0033E23E /* favoritesViewUIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DCDD2A3D63FB0033E23E /* favoritesViewUIConfig.swift */; };
+		4686DCE02A3D646E0033E23E /* filmCellUIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686DCDF2A3D646E0033E23E /* filmCellUIConfig.swift */; };
 		46C5A12F2A2B252E0091B0EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C5A12E2A2B252E0091B0EA /* AppDelegate.swift */; };
 		46C5A1312A2B252E0091B0EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C5A1302A2B252E0091B0EA /* SceneDelegate.swift */; };
 		46C5A1332A2B252E0091B0EA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C5A1322A2B252E0091B0EA /* SearchViewController.swift */; };
@@ -55,7 +51,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4686DC8C2A3607560033E23E /* FavoritesFilmCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesFilmCellView.swift; sourceTree = "<group>"; };
 		4686DC8E2A3607620033E23E /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		4686DC902A3607720033E23E /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		4686DC922A36077F0033E23E /* FavoritesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractor.swift; sourceTree = "<group>"; };
@@ -73,14 +68,11 @@
 		4686DCBC2A3AE6060033E23E /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
 		4686DCBE2A3AE6150033E23E /* DetailModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModuleBuilder.swift; sourceTree = "<group>"; };
 		4686DCC02A3B29500033E23E /* FilmDetailInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailInfoModel.swift; sourceTree = "<group>"; };
-		4686DCC32A3C30790033E23E /* LEMONMILK-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LEMONMILK-Bold.otf"; sourceTree = "<group>"; };
-		4686DCC42A3C30790033E23E /* LEMONMILK-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LEMONMILK-BoldItalic.otf"; sourceTree = "<group>"; };
-		4686DCC52A3C30790033E23E /* LEMONMILK-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LEMONMILK-RegularItalic.otf"; sourceTree = "<group>"; };
-		4686DCC62A3C30790033E23E /* LEMONMILK-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LEMONMILK-Medium.otf"; sourceTree = "<group>"; };
-		4686DCC72A3C30790033E23E /* LEMONMILK-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LEMONMILK-LightItalic.otf"; sourceTree = "<group>"; };
-		4686DCC82A3C30790033E23E /* LEMONMILK-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LEMONMILK-Light.otf"; sourceTree = "<group>"; };
-		4686DCC92A3C30790033E23E /* LEMONMILK-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LEMONMILK-Regular.otf"; sourceTree = "<group>"; };
-		4686DCCA2A3C30790033E23E /* LEMONMILK-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LEMONMILK-MediumItalic.otf"; sourceTree = "<group>"; };
+		4686DCD72A3D5A430033E23E /* endpointsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endpointsAPI.swift; sourceTree = "<group>"; };
+		4686DCD92A3D5C800033E23E /* uiFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uiFonts.swift; sourceTree = "<group>"; };
+		4686DCDB2A3D5D920033E23E /* detailViewUIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewUIConfig.swift; sourceTree = "<group>"; };
+		4686DCDD2A3D63FB0033E23E /* favoritesViewUIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoritesViewUIConfig.swift; sourceTree = "<group>"; };
+		4686DCDF2A3D646E0033E23E /* filmCellUIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filmCellUIConfig.swift; sourceTree = "<group>"; };
 		46C5A12B2A2B252E0091B0EA /* WatchLater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchLater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C5A12E2A2B252E0091B0EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46C5A1302A2B252E0091B0EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,7 +123,6 @@
 				4686DC922A36077F0033E23E /* FavoritesInteractor.swift */,
 				4686DC942A36078C0033E23E /* FavoritesPresenter.swift */,
 				4686DC962A36079C0033E23E /* FavoritesRouter.swift */,
-				4686DC8C2A3607560033E23E /* FavoritesFilmCellView.swift */,
 				4686DC982A3607B40033E23E /* FavoritesModuleBuilder.swift */,
 			);
 			path = FavoritesModule;
@@ -148,21 +139,6 @@
 				4686DCBE2A3AE6150033E23E /* DetailModuleBuilder.swift */,
 			);
 			path = DetailInfoModule;
-			sourceTree = "<group>";
-		};
-		4686DCC22A3C305C0033E23E /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				4686DCC32A3C30790033E23E /* LEMONMILK-Bold.otf */,
-				4686DCC42A3C30790033E23E /* LEMONMILK-BoldItalic.otf */,
-				4686DCC82A3C30790033E23E /* LEMONMILK-Light.otf */,
-				4686DCC72A3C30790033E23E /* LEMONMILK-LightItalic.otf */,
-				4686DCC62A3C30790033E23E /* LEMONMILK-Medium.otf */,
-				4686DCCA2A3C30790033E23E /* LEMONMILK-MediumItalic.otf */,
-				4686DCC92A3C30790033E23E /* LEMONMILK-Regular.otf */,
-				4686DCC52A3C30790033E23E /* LEMONMILK-RegularItalic.otf */,
-			);
-			path = fonts;
 			sourceTree = "<group>";
 		};
 		46C5A1222A2B252E0091B0EA = {
@@ -257,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				46C5A1702A3325FF0091B0EA /* APIManager.swift */,
+				4686DCD72A3D5A430033E23E /* endpointsAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -264,7 +241,10 @@
 		46C5A1832A34A1B10091B0EA /* UIConfigs */ = {
 			isa = PBXGroup;
 			children = (
-				4686DCC22A3C305C0033E23E /* fonts */,
+				4686DCD92A3D5C800033E23E /* uiFonts.swift */,
+				4686DCDB2A3D5D920033E23E /* detailViewUIConfig.swift */,
+				4686DCDD2A3D63FB0033E23E /* favoritesViewUIConfig.swift */,
+				4686DCDF2A3D646E0033E23E /* filmCellUIConfig.swift */,
 			);
 			path = UIConfigs;
 			sourceTree = "<group>";
@@ -337,16 +317,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4686DCCF2A3C30790033E23E /* LEMONMILK-LightItalic.otf in Resources */,
-				4686DCD12A3C30790033E23E /* LEMONMILK-Regular.otf in Resources */,
-				4686DCCB2A3C30790033E23E /* LEMONMILK-Bold.otf in Resources */,
-				4686DCCE2A3C30790033E23E /* LEMONMILK-Medium.otf in Resources */,
 				46C5A13B2A2B252F0091B0EA /* LaunchScreen.storyboard in Resources */,
 				46C5A1382A2B252F0091B0EA /* Assets.xcassets in Resources */,
-				4686DCCD2A3C30790033E23E /* LEMONMILK-RegularItalic.otf in Resources */,
-				4686DCD22A3C30790033E23E /* LEMONMILK-MediumItalic.otf in Resources */,
-				4686DCCC2A3C30790033E23E /* LEMONMILK-BoldItalic.otf in Resources */,
-				4686DCD02A3C30790033E23E /* LEMONMILK-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +331,7 @@
 			files = (
 				4686DC972A36079C0033E23E /* FavoritesRouter.swift in Sources */,
 				46C5A16E2A331A9A0091B0EA /* FilmCellView.swift in Sources */,
-				4686DC8D2A3607560033E23E /* FavoritesFilmCellView.swift in Sources */,
+				4686DCD82A3D5A430033E23E /* endpointsAPI.swift in Sources */,
 				4686DCA92A38C86B0033E23E /* FilmsCD.xcdatamodeld in Sources */,
 				46C5A1682A3317870091B0EA /* SearchRouter.swift in Sources */,
 				4686DCC12A3B29510033E23E /* FilmDetailInfoModel.swift in Sources */,
@@ -370,6 +342,7 @@
 				4686DCB72A3AE5C80033E23E /* DetailViewController.swift in Sources */,
 				46C5A1332A2B252E0091B0EA /* SearchViewController.swift in Sources */,
 				4686DCB52A3AE5B20033E23E /* DetailView.swift in Sources */,
+				4686DCDA2A3D5C800033E23E /* uiFonts.swift in Sources */,
 				4686DCBB2A3AE5EB0033E23E /* DetailPresenter.swift in Sources */,
 				46C5A12F2A2B252E0091B0EA /* AppDelegate.swift in Sources */,
 				46C5A1662A33176A0091B0EA /* SearchPresenter.swift in Sources */,
@@ -381,11 +354,14 @@
 				46C5A1642A33174D0091B0EA /* SearchInteractor.swift in Sources */,
 				4686DCB02A38CA3A0033E23E /* FilmModelCoreData+CoreDataClass.swift in Sources */,
 				4686DC932A36077F0033E23E /* FavoritesInteractor.swift in Sources */,
+				4686DCE02A3D646E0033E23E /* filmCellUIConfig.swift in Sources */,
 				46C5A1312A2B252E0091B0EA /* SceneDelegate.swift in Sources */,
 				4686DC992A3607B40033E23E /* FavoritesModuleBuilder.swift in Sources */,
 				4686DC8F2A3607620033E23E /* FavoritesView.swift in Sources */,
 				4686DCBF2A3AE6150033E23E /* DetailModuleBuilder.swift in Sources */,
 				46C5A1802A33887E0091B0EA /* FilmSearchModel.swift in Sources */,
+				4686DCDE2A3D63FB0033E23E /* favoritesViewUIConfig.swift in Sources */,
+				4686DCDC2A3D5D920033E23E /* detailViewUIConfig.swift in Sources */,
 				46C5A17C2A336A920091B0EA /* FilmCellModel.swift in Sources */,
 				46C5A1762A3333A00091B0EA /* SearchView.swift in Sources */,
 				4686DCBD2A3AE6060033E23E /* DetailRouter.swift in Sources */,

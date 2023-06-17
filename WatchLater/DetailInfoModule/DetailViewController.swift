@@ -22,12 +22,6 @@ final class DetailViewController: UIViewController {
         self.view = self.detailView
     }
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        self.detailPresenter.viewDidLoad(detailView)
-//        //self.title = self.detailView.filmNameLabel.text
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.detailPresenter.viewDidLoad(detailView)
