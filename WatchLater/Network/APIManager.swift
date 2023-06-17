@@ -8,6 +8,7 @@ protocol IAPIManager: AnyObject {
     func getRandomFilm() -> FilmModel?
     func getSearchResultsByFilmName(filmName: String, completion: @escaping ([FilmSearchModel]) -> Void)
     func getPosterImageByURL(urlString: String?, completion: @escaping (UIImage?) -> Void)
+    func getFilmByID(filmID: Int, completion: @escaping (FilmModel?) -> Void)
 }
 
 class APIManager: IAPIManager {
@@ -15,12 +16,10 @@ class APIManager: IAPIManager {
     func getRandomFilm() -> FilmModel? {
         var randomFilm: FilmModel?
         
-        // вынести url в userdefaults
-        let url = "https://api.kinopoisk.dev/v1.3/movie/random"
+        let url = endpointsAPI.randomFilmURL
         let headers: HTTPHeaders = [
             "accept": "application/json",
-            // вынести ключ в keychain
-            "X-API-KEY": "WTTWJV6-NQAMM86-MQ32AR1-DHB6A03"
+            "X-API-KEY": endpointsAPI.token
         ]
         
         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseData { response in
@@ -42,18 +41,16 @@ class APIManager: IAPIManager {
         
         var image: UIImage?
         
-        
         guard let url = URL.init(string: urlString ?? "") else {
+            completion(nil)
             return
         }
-        let resource = ImageResource(downloadURL: url)
         
+        let resource = ImageResource(downloadURL: url)
         let cache = ImageCache.default
         cache.clearMemoryCache()
         
-        let processor = RoundCornerImageProcessor(cornerRadius: 30)
-        
-        KingfisherManager.shared.retrieveImage(with: resource, options: [.processor(processor)], progressBlock: nil) { result in
+        KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
             switch result {
             case .success(let value):
                 image = value.image
@@ -66,14 +63,11 @@ class APIManager: IAPIManager {
     
     func getSearchResultsByFilmName(filmName: String, completion: @escaping ([FilmSearchModel]) -> Void) {
         var filmSearchResults: [FilmSearchModel] = []
-        
-        // вынести url в userdefaults
-        let url = "https://api.kinopoisk.dev/v1.2/movie/search"
-        //let url = ""
+
+        let url = endpointsAPI.searchURL
         let headers: HTTPHeaders = [
             "accept": "application/json",
-            // вынести ключ в keychain
-            "X-API-KEY": "WTTWJV6-NQAMM86-MQ32AR1-DHB6A03"
+            "X-API-KEY": endpointsAPI.token
         ]
         
         let parameters: Parameters = [
@@ -89,14 +83,31 @@ class APIManager: IAPIManager {
                     let films = try! JSONDecoder().decode(FilmSearchResults.self, from: data)
                     filmSearchResults = films.docs
                     completion(filmSearchResults)
-                    print(filmSearchResults.count)
-                    //print(filmSearchResults)
                 }
             case .failure(let error):
                 print(error.errorDescription ?? "some error")
             }
         }
+    }
+    
+    func getFilmByID(filmID: Int, completion: @escaping (FilmModel?) -> Void) {
         
-        //return filmSearchResults
+        let url = endpointsAPI.getFilmByIDURL + "\(filmID)"
+        let headers: HTTPHeaders = [
+            "accept": "application/json",
+            "X-API-KEY": endpointsAPI.token
+        ]
+        
+        AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers).responseData { response in
+            switch response.result {
+            case .success(let data):
+                if (response.response?.statusCode == 200) {
+                    let film = try! JSONDecoder().decode(FilmModel.self, from: data)
+                    completion(film)
+                }
+            case .failure(let error):
+                print(error.errorDescription ?? "some error")
+            }
+        }
     }
 }

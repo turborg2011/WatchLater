@@ -1,8 +1,17 @@
-//
-//  FavoritesModuleBuilder.swift
-//  WatchLater
-//
-//  Created by Хайдар Даукаев on 11.06.2023.
-//
 
-import Foundation
+import UIKit
+
+final class FavoritesModuleBuilder {
+    public static func buildFavoritesModule() -> UIViewController {
+        
+        // зависимости для favorites модуля
+        let interactor = FavoritesInteractor()
+        let router = FavoritesRouter()
+        let presenter = FavoritesPresenter(interactor: interactor, router: router)
+        interactor.presenter = presenter
+        let viewController = FavoritesViewController(presenter: presenter)
+        presenter.viewController = viewController
+        
+        return viewController
+    }
+}

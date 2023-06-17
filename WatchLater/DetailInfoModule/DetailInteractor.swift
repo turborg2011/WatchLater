@@ -1,38 +1,30 @@
 
 import UIKit
 
-protocol IFavoritesInteractor: AnyObject {
-    func getFavoritesFilms()
-    func deleteAllFavFilms()
-    func deleteFilm(_ filmID: Int)
-    func saveFilm(_ filmID: Int)
+protocol IDetailInteractor: AnyObject {
+    func getFilmByID(_ filmID: Int)
+    func filmUpdateCommentary(_ filmID: Int, commentary: String?)
+    func saveFilmAndCommentary(_ filmID: Int, commentary: String?)
 }
 
-final class FavoritesInteractor {
-    
-    weak var presenter: IFavoritesPresenter?
+final class DetailInteractor: IDetailInteractor {
+    weak var presenter: IDetailPresenter?
     private let apiManager: IAPIManager = APIManager()
     
-}
-
-extension FavoritesInteractor: IFavoritesInteractor {
-
-    func getFavoritesFilms() {
-        let films = DataSourceManager.shared.fetchFilms()
-        var filmsCellModel: [FilmCellModel] = []
-        
-        films.forEach { filmCoreData in
-            filmsCellModel.append(converCoreDataToFilmCellModel(coreDataModel: filmCoreData))
+    func getFilmByID(_ filmID: Int) {
+        let film = DataSourceManager.shared.getFilmByID(filmID)
+        if let filmModelCoreData = film {
+            let filmInfoModel = converCoreDataToFilmModel(coreDataModel: filmModelCoreData)
+            self.presenter?.didLoadFilmFromCoreData(filmInfoModel)
         }
-        self.presenter?.didLoadFavoriteFilms(filmsCellModel)
     }
     
-    func deleteAllFavFilms() {
-        DataSourceManager.shared.deleteAllFavFilms()
-        self.presenter?.didDeleteAllFavFilms()
+    func filmUpdateCommentary(_ filmID: Int, commentary: String?) {
+        DataSourceManager.shared.updateFilmCommentary(filmID: filmID, commentary: commentary)
+        self.presenter?.didUpdateCommentary()
     }
     
-    func saveFilm(_ filmID: Int) {
+    func saveFilmAndCommentary(_ filmID: Int, commentary: String?) {
         
         apiManager.getFilmByID(filmID: filmID) { [weak self] filmModel in
             if let film = filmModel {
@@ -71,8 +63,9 @@ extension FavoritesInteractor: IFavoritesInteractor {
                                                             genre: genres,
                                                             country: countries,
                                                             rating: film.rating?.kp ?? 0,
-                                                            commentary: ""
+                                                            commentary: commentary
                         )
+                        print("filmsucsessfullySaved")
                         self?.presenter?.didAddFilm(filmID)
                     }
                 }
@@ -81,36 +74,29 @@ extension FavoritesInteractor: IFavoritesInteractor {
             }
         }
     }
-    
-    func deleteFilm(_ filmID: Int) {
-        DataSourceManager.shared.deleteFilm(filmID: filmID)
-        self.presenter?.didDeleteFilm(filmID)
-    }
 }
 
-private extension FavoritesInteractor {
-    func converCoreDataToFilmCellModel(coreDataModel: FilmModelCoreData) -> FilmCellModel {
-        var config = UIImage.SymbolConfiguration(paletteColors: [.systemGray5])
-        config = config.applying(UIImage.SymbolConfiguration(scale: .small))
-        var posterImage: UIImage? = UIImage(systemName: "photo", withConfiguration: config)
+private extension DetailInteractor {
+    func converCoreDataToFilmModel(coreDataModel: FilmModelCoreData) -> FilmDetailInfoModel {
+        var posterImage: UIImage? = nil
         
         if let posterData = coreDataModel.poster {
             posterImage = UIImage(data: posterData)
         }
         
-        let rating = String(coreDataModel.rating)
-        let year = String(coreDataModel.year)
+        let filmModel = FilmDetailInfoModel(id: coreDataModel.id,
+                                            name: coreDataModel.name,
+                                            type: coreDataModel.type,
+                                            description: coreDataModel.filmDescription,
+                                            year: coreDataModel.year,
+                                            poster: posterImage,
+                                            genres: coreDataModel.genre,
+                                            countries: coreDataModel.country,
+                                            rating: coreDataModel.rating,
+                                            isDownloaded: true,
+                                            commentary: coreDataModel.commentary
+        )
         
-        let filmCellModel = FilmCellModel(id: coreDataModel.id,
-                                           cellFilmPoster: posterImage,
-                                           cellFilmName: coreDataModel.name,
-                                           filmDescription: coreDataModel.filmDescription,
-                                           filmRating: rating,
-                                           filmYear: year,
-                                           filmGenre: coreDataModel.genre,
-                                           isDownloaded: true)
-        
-        return filmCellModel
+        return filmModel
     }
 }
-
